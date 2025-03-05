@@ -100,4 +100,23 @@ RSpec.describe Market do
             })
         end
     end
+
+    describe '#overstocked_items' do
+        it 'can correctly identify overstocked items' do
+            market = Market.new("South Pearl Street Farmers Market")
+
+            vendor1 = Vendor.new("Rocky Mountain Fresh")
+            vendor2 = Vendor.new("Ba-Nom-a-Nom")
+
+            item1 = Item.new({name: 'Peach', price: "$0.75"})
+
+            vendor1.stock(item1, 40)
+            vendor2.stock(item1, 20)
+
+            market.add_vendor(vendor1)
+            market.add_vendor(vendor2)
+
+            expect(market.overstocked_items).to eq([item1])
+        end
+    end
 end

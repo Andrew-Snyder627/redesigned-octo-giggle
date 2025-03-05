@@ -31,7 +31,7 @@ class Market
                     inventory_hash[item][:quantity] += quantity #Adds vendors stock of the item to the quantity count
                     inventory_hash[item][:vendors] << vendor #Adds the current vendor to the vendors array
                 else
-                    inventory_hash[item] = {quantity: quantity, vendors: [vendor]}
+                    inventory_hash[item] = {quantity: quantity, vendors: [vendor]} #sets the quanitity for this item, and creates a vendors array with this vendor
                 end
             end
         end
