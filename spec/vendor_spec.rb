@@ -52,4 +52,17 @@ RSpec.describe Vendor do
             expect(vendor.inventory).to eq({item1 => 55, item2 => 12})
         end
     end
+
+    describe '#potential_revenue' do
+        it 'calculates potential revenue' do
+            vendor = Vendor.new("Rocky Mountain Fresh")
+            item1 = Item.new({name: 'Peach', price: "$0.75"})
+            item2 = Item.new({name: 'Tomato', price: "$0.50"})
+
+            vendor.stock(item1, 35)
+            vendor.stock(item2, 7)
+
+            expect(vendor.potential_revenue).to eq(29.75) #Only testing this calc due to time constraints, the rest should work the same.
+        end
+    end
 end
