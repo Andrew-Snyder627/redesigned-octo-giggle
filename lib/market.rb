@@ -38,4 +38,16 @@ class Market
 
         inventory_hash #return the final inventory hash
     end
+
+    def overstocked_items #going to reuse above hash
+        overstocked = []
+
+        total_inventory.each do |item, item_data|
+            if item_data[:quantity] > 50 && item_data[:vendors].length > 1
+                overstocked << item
+            end
+        end
+
+        overstocked
+    end
 end
