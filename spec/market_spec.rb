@@ -75,4 +75,28 @@ RSpec.describe Market do
             expect(market.vendors_that_sell(item4)).to eq([vendor2])
         end
     end
+
+    describe '#total_inventory' do
+        it 'can calculate total inventory' do
+            market = Market.new("South Pearl Street Farmers Market")
+
+            vendor1 = Vendor.new("Rocky Mountain Fresh")
+            vendor2 = Vendor.new("Ba-Nom-a-Nom")
+
+            item1 = Item.new({name: 'Peach', price: "$0.75"})
+            item2 = Item.new({name: 'Tomato', price: "$0.50"})
+
+            vendor1.stock(item1, 35)
+            vendor1.stock(item2, 7)
+            vendor2.stock(item1, 25)
+
+            market.add_vendor(vendor1)
+            market.add_vendor(vendor2)
+
+            expect(market.total_inventory).to eq({
+                item1 => {quantity: 60, vendors: [vendor1, vendor2]},
+                item2 => {quantity: 7, vendors: [vendor1]}
+            })
+        end
+    end
 end
