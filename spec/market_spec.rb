@@ -87,15 +87,16 @@ RSpec.describe Market do
             item2 = Item.new({name: 'Tomato', price: "$0.50"})
 
             vendor1.stock(item1, 35)
-            vendor1.stock(item2, 7)
+            vendor1.stock(item2, 10)
             vendor2.stock(item1, 25)
+            vendor2.stock(item2, 20)
 
             market.add_vendor(vendor1)
             market.add_vendor(vendor2)
 
             expect(market.total_inventory).to eq({
                 item1 => {quantity: 60, vendors: [vendor1, vendor2]},
-                item2 => {quantity: 7, vendors: [vendor1]}
+                item2 => {quantity: 30, vendors: [vendor1, vendor2]}
             })
         end
     end
