@@ -119,4 +119,26 @@ RSpec.describe Market do
             expect(market.overstocked_items).to eq([item1])
         end
     end
+
+    describe '#sorted_item_list' do
+        it 'provides the names of all items the vendors have in stock, sorted alphabetically' do
+            market = Market.new("South Pearl Street Farmers Market")
+
+            vendor1 = Vendor.new("Rocky Mountain Fresh")
+            vendor2 = Vendor.new("Ba-Nom-a-Nom")
+
+            item1 = Item.new({name: 'Peach', price: "$0.75"})
+            item2 = Item.new({name: 'Tomato', price: "$0.50"})
+            item3 = Item.new9({name: 'Strawberry', price: "$1.00"})
+
+            vendor1.stock(item1, 10)
+            vendor2.stock(item2, 10)
+            vendor2.stock(item3, 10)
+
+            market.add_vendor(vendor1)
+            market.add_vendor(vendor2)
+
+            expect(market.sorted_item_list).to eq(["Peach", "Strawberry", "Tomato"])
+        end
+    end
 end
