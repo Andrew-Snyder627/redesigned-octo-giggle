@@ -129,7 +129,7 @@ RSpec.describe Market do
 
             item1 = Item.new({name: 'Peach', price: "$0.75"})
             item2 = Item.new({name: 'Tomato', price: "$0.50"})
-            item3 = Item.new9({name: 'Strawberry', price: "$1.00"})
+            item3 = Item.new({name: 'Strawberry', price: "$1.00"})
 
             vendor1.stock(item1, 10)
             vendor2.stock(item2, 10)

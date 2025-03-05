@@ -50,4 +50,16 @@ class Market
 
         overstocked
     end
+
+    def sorted_item_list
+        item_names = []
+
+        @vendors.each do |vendor|
+            vendor.inventory.each do |item, quanitity| #Not going to use quantity, could I use _ instead? I did this in my project but would like feedback on when to use it.
+                item_names << item.name unless item_names.include?(item.name) #avoiding dupes
+            end
+        end
+
+        item_names.sort #Sort the array alphabetically.
+    end
 end
